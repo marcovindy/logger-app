@@ -1,0 +1,42 @@
+// prisma/schema.prisma
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Article {
+  id        String    @id @default(cuid())
+  title     String
+  content   String
+  category  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  views     Int       @default(0)
+  comments  Comment[]
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  status    String   @default("pending") // pending, published, spam
+  articleId String
+  article   Article  @relation(fields: [articleId], references: [id])
+  authorId  String
+  createdAt DateTime @default(now())
+}
+
+model AlertHistory {
+  id          String   @id @default(cuid())
+  alertName   String
+  status      String
+  severity    String
+  value       String
+  description String?
+  timestamp   DateTime @default(now())
+
+  @@index([timestamp])
+}
