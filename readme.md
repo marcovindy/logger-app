@@ -1,8 +1,3 @@
-Of course 😊 Here’s your **English `README.md`** — clean, well-structured, and ready to commit into your project root.
-It documents everything: setup, architecture, services, logging integration, and safety notes.
-
----
-
 ```markdown
 # 🧠 My Next Logger
 
@@ -52,6 +47,7 @@ my-next-logger/
 ## 🧭 Getting Started
 
 ### 1️⃣ Start all containers
+
 ```bash
 docker compose up -d
 ````
